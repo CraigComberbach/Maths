@@ -1,3 +1,6 @@
+#include <math.h>
+#include "Maths.h"
+
 //Using y = mx + b, this function interpolates a point between two other points
 //y is the interpolated value, m is the slope, b is the offset and x is the known value along the x axis
 //Slope of a line is equal to rise over run, or m = (y1-y2) / (x1-x2)
@@ -62,4 +65,36 @@ int Extrapolate_Point(int x1, int x2, int y1, int y2, int x)
 
 	//Since we are allowing extrapolation, we can't do any range checks on this
 	return (int)y; //Return the polated point
+}
+
+int8_t Solve_Quadratic(float A, float B, float C, float *PlusX, float *MinusX)
+{
+    int8_t NumberOfRealRoots = 0;;
+    float Descriminant;
+
+    Descriminant = B * B - 4 * A * C;
+
+    if(Descriminant < 0)
+    {
+        NumberOfRealRoots = 0;
+    }
+    else
+    {
+        *PlusX = (float)sqrt(Descriminant);
+
+        *PlusX = (-B + *PlusX) / (2 * A);
+        *MinusX = (-B - *PlusX) / (2 * A);
+
+        if(D > 0)
+        {
+            NumberOfRealRoots = 2;
+        }
+        else
+        {
+            *MinusX = *PlusX;
+            NumberOfRealRoots = 1;
+        }
+    }
+
+    return NumberOfRealRoots;
 }

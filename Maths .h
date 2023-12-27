@@ -1,5 +1,6 @@
 #ifndef MATHS_H
 #define MATHS_H
+#include <stdint.h>
 /***********Add to config file header************/
 /*
 //Maths Library
@@ -46,5 +47,7 @@ int Interpolate_Point(int x1, int x2, int y1, int y2, int x);
  * @return The Y that corresponds to the given X
  */
 int Extrapolate_Point(int x1, int x2, int y1, int y2, int x);
+
+int8_t Solve_Quadratic(float A, float B, float C, float *PlusX, float *MinusX);
 
 #endif
